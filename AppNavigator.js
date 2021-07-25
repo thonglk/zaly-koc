@@ -9,10 +9,10 @@ import theme from './themes/DraftbitTheme.js';
 
 import {lang} from './config/config';
 
-SMSAuthConfirmationScreen
+
 import LoginWithEmailScreen from './screens/LoginWithEmailScreen';
 import ListofProductsScreen from './screens/ListofProductsScreen';
-import SMSAuthConfirmationScreen from './screens/SMSAuthConfirmationScreen';
+import ListofCampaignScreen from './screens/ListofCampaignScreen';
 
 
 const Stack = createStackNavigator();
@@ -29,7 +29,7 @@ export default function RootAppNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="SMSAuthConfirmationScreen"
+        initialRouteName="ListofCampaignScreen"
         screenOptions={{
           cardOverlayEnabled: true,
           gestureEnabled: true,
@@ -37,9 +37,9 @@ export default function RootAppNavigator() {
         }}
       >
         <Stack.Screen
-          name="SMSAuthConfirmationScreen"
-          component={SMSAuthConfirmationScreen}
-          options={{ title: 'Tạo link KOC Zaly' }}
+          name="ListofCampaignScreen"
+          component={ListofCampaignScreen}
+          options={{ title: 'Zaly KOC' }}
         />
         <Stack.Screen
           name="ListofProductsScreen"
