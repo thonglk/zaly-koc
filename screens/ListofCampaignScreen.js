@@ -94,7 +94,11 @@ const ListofCampaignScreen = props => {
   };
 
   return (
-    <ScreenContainer hasSafeArea={true} scrollable={false}>
+    <ScreenContainer
+      style={styles.screen}
+      hasSafeArea={true}
+      scrollable={false}
+    >
       <View style={styles.Viewog}>
         <Text
           style={[theme.typography.headline4, { color: theme.colors.strong }]}
@@ -122,7 +126,7 @@ const ListofCampaignScreen = props => {
         </Touchable>
       </View>
 
-      <View>
+      <View style={styles.Viewh5}>
         <Fetch
           key={`2zBTxN8t-${String(isFocused)}`}
           cacheResponse={false}
@@ -387,6 +391,9 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     flexGrow: 0,
   },
+  Viewh5: {
+    maxWidth: 600,
+  },
   TextInputTC: {
     borderLeftWidth: 1,
     borderRightWidth: 1,
@@ -398,6 +405,9 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     borderRadius: 8,
     opacity: 0,
+  },
+  screen: {
+    alignSelf: 'center',
   },
 });
 
