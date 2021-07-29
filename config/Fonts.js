@@ -1,3 +1,3 @@
 export default {
-  MerriweatherBold: require('../assets/fonts/MerriweatherBold.ttf'),
+  MerriweatherBold: require('../assets/fonts/Merriweather-Bold.ttf'),
 };

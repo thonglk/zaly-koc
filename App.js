@@ -6,12 +6,20 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 
+import { AppLoading } from 'expo';
+import { SafeAreaProvider,SafeAreaView } from 'react-native-safe-area-context';
+import { Provider as ThemeProvider } from '@draftbit/ui';
+import cacheAssetsAsync from './config/cacheAssetsAsync';
+import DraftbitTheme from './themes/DraftbitTheme.js';
+
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 import ListofCampaignScreen from './screens/ListofCampaignScreen.js';
+import CommissionReportScreen from './screens/CommissionReportScreen.js';
 
 
 // Import Custom Sidebar
@@ -63,6 +71,31 @@ function ListofCampaignScreenStack({ navigation }) {
           },
         }}
       />
+      
+    </Stack.Navigator>
+  );
+}
+function CommissionReportScreenStack({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="CommissionReportScreen">
+      <Stack.Screen
+        name="CommissionReportScreen"
+        component={CommissionReportScreen}
+        options={{
+          title: 'Báo cáo doanh số', //Set Header Title
+          headerLeft: () => (
+            <NavigationDrawerStructure navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: '#304057', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      
     </Stack.Navigator>
   );
 }
@@ -100,10 +133,22 @@ function ListofCampaignScreenStack({ navigation }) {
 //     </Stack.Navigator>
 //   );
 // }
+const config = {
+  screens: {
+    ListofCampaignScreenStack:'campaign',
+    ListofCampaignScreen:'hot',
+    CommissionReportScreenStack:'report',
+    CommissionReportScreen:'order'},
+};
 
+const linking = {
+  prefixes: ['https://koc.zaly.me', 'http://localhost:19006'],
+  config,
+};
 function App() {
   return (
-    <NavigationContainer>
+    <ThemeProvider theme={DraftbitTheme}>
+      <NavigationContainer linking={linking}>
       <Drawer.Navigator
         drawerContentOptions={{
           activeTintColor: '#e91e63',
@@ -112,12 +157,19 @@ function App() {
         drawerContent={(props) => <CustomSidebarMenu {...props} />}>
         <Drawer.Screen
           name="ListofCampaignScreenStack"
-          options={{ drawerLabel: 'ListofCampaignScreenStack' }}
+          options={{ drawerLabel: 'Chiến dịch hoa hồng' }}
           component={ListofCampaignScreenStack}
+        />
+        <Drawer.Screen
+          name="CommissionReportScreenStack"
+          options={{ drawerLabel: 'Báo cáo' }}
+          component={CommissionReportScreenStack}
         />
        
       </Drawer.Navigator>
     </NavigationContainer>
+  </ThemeProvider>
+    
   );
 }
 

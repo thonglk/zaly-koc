@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/static/js/app.b121fd5f.chunk.js",
-    "app.js.map": "/static/js/app.b121fd5f.chunk.js.map",
+    "app.js": "/static/js/app.0371167e.chunk.js",
+    "app.js.map": "/static/js/app.0371167e.chunk.js.map",
     "runtime~app.js": "/static/js/runtime~app.2e9f1821.js",
     "runtime~app.js.map": "/static/js/runtime~app.2e9f1821.js.map",
-    "static/js/2.a278fc3d.chunk.js": "/static/js/2.a278fc3d.chunk.js",
-    "static/js/2.a278fc3d.chunk.js.map": "/static/js/2.a278fc3d.chunk.js.map",
+    "static/js/2.fe63203b.chunk.js": "/static/js/2.fe63203b.chunk.js",
+    "static/js/2.fe63203b.chunk.js.map": "/static/js/2.fe63203b.chunk.js.map",
     "fonts/AntDesign.ttf": "/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/./fonts/Feather.ttf",
@@ -17,6 +17,7 @@
     "fonts/Ionicons.ttf": "/./fonts/Ionicons.ttf",
     "fonts/MaterialCommunityIcons.ttf": "/./fonts/MaterialCommunityIcons.ttf",
     "fonts/MaterialIcons.ttf": "/./fonts/MaterialIcons.ttf",
+    "fonts/Merriweather-Bold.ttf": "/./fonts/Merriweather-Bold.ttf",
     "fonts/SimpleLineIcons.ttf": "/./fonts/SimpleLineIcons.ttf",
     "favicon-16.png": "/favicon-16.png",
     "favicon-32.png": "/favicon-32.png",
@@ -24,11 +25,12 @@
     "index.html": "/index.html",
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
-    "static/js/2.a278fc3d.chunk.js.LICENSE.txt": "/static/js/2.a278fc3d.chunk.js.LICENSE.txt"
+    "static/js/2.fe63203b.chunk.js.LICENSE.txt": "/static/js/2.fe63203b.chunk.js.LICENSE.txt",
+    "static/media/icon.png": "/static/media/icon.608e4d9d.png"
   },
   "entrypoints": [
     "static/js/runtime~app.2e9f1821.js",
-    "static/js/2.a278fc3d.chunk.js",
-    "static/js/app.b121fd5f.chunk.js"
+    "static/js/2.fe63203b.chunk.js",
+    "static/js/app.0371167e.chunk.js"
   ]
 }
