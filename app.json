@@ -1,51 +1,33 @@
 {
   "expo": {
-    "name": "Lotion",
-    "slug": "lotion",
-    "scheme": "lotion",
-    "description": "Create website from Notion",
-    "privacy": "unlisted",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "version": "1.1.9",
+    "name": "navigation-drawer-with-custom-sidebar-menu-example",
+    "slug": "snack-190f1c37-4891-466f-b95c-f6955edc850d",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#5A45FF"
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
-    "packagerOpts":{
-    "minify":false
-    },
     "ios": {
-      "bundleIdentifier": "com.joboasia.fitlivenew",
-      "supportsTablet": true,
-      "buildNumber": "1.1.9",
-      "googleServicesFile": "./GoogleService-Info.plist"
-
+      "supportsTablet": true
     },
     "android": {
-      "versionCode": 3,
-      "package": "com.joboasia.fitlivenew",
-      "permissions": []
-    },
-    "web": {
-      "config": {
-        "firebase": {
-    "appId": "1:307800118128:web:f71b0decd1a93fec1e75b5",
-    "apiKey": "AIzaSyBdxLQp5bspKC4g-VXYKXayeWGSnWbnhFY",
-    "measurementId": "G-R4P9BPMJY1"
-        }
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       }
     },
-    "notification": {
-      "androidMode": "default"
-    }
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": "Example of React Native NavigationDrawer"
   }
 }

@@ -1,62 +1,124 @@
+// Custom Navigation Drawer / Sidebar with Image and Icon in Menu Options
+// https://aboutreact.com/custom-navigation-drawer-sidebar-with-image-and-icon-in-menu-options/
+
+import 'react-native-gesture-handler';
+
 import * as React from 'react';
-import { Dimensions , Platform, StyleSheet, Text, View ,StatusBar} from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 
-import { AppLoading } from 'expo';
-import { SafeAreaProvider,SafeAreaView } from 'react-native-safe-area-context';
-import { Provider as ThemeProvider } from '@draftbit/ui';
-import AppNavigator from './AppNavigator';
-import cacheAssetsAsync from './config/cacheAssetsAsync';
-import DraftbitTheme from './themes/DraftbitTheme.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
+import ListofCampaignScreen from './screens/ListofCampaignScreen.js';
 
-export default class App extends React.PureComponent {
-  state = {
-    isReady: false,
-    autoHideSplash:true
+
+// Import Custom Sidebar
+import CustomSidebarMenu from './CustomSidebarMenu';
+
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const NavigationDrawerStructure = (props) => {
+  //Structure for the navigatin Drawer
+  const toggleDrawer = () => {
+    //Props to open/close the drawer
+    props.navigationProps.toggleDrawer();
   };
 
-  render() {
-    // if (!this.state.isReady) {
-    //   return (
-    //     <AppLoading
-    //       startAsync={cacheAssetsAsync}
-    //       onFinish={() => this.setState({ isReady: true })}
-    //       onError={alert}
-    //       autoHideSplash={this.state.autoHideSplash}
-    //     />
-    //   );
-    // }
-
-    return (
-     
-      <SafeAreaProvider>
-       <StatusBar
-          barStyle="dark-content"
-          // dark-content, light-content and default
-          hidden={false}
-          //To hide statusBar
-          backgroundColor="#00BCD4"
-          //Background color of statusBar
-          translucent={false}
-          //allowing light, but not detailed shapes
-          networkActivityIndicatorVisible={true}
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      <TouchableOpacity onPress={toggleDrawer}>
+        {/*Donute Button Image */}
+        <Image
+          source={{
+            uri:
+              'https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png',
+          }}
+          style={{ width: 25, height: 25, marginLeft: 5 }}
         />
-        <ThemeProvider  theme={DraftbitTheme}>
-          <AppNavigator />
-        </ThemeProvider>
-      </SafeAreaProvider>
-    );
-  }
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+function ListofCampaignScreenStack({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="ListofCampaignScreen">
+      <Stack.Screen
+        name="ListofCampaignScreen"
+        component={ListofCampaignScreen}
+        options={{
+          title: 'Zaly KOC', //Set Header Title
+          headerLeft: () => (
+            <NavigationDrawerStructure navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: '#304057', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+    </Stack.Navigator>
+  );
 }
 
-// const windowWidth = Dimensions.get('window').width;
-// const windowHeight = Dimensions.get('window').height;
-// const marginLeft = windowWidth>600? (windowWidth-600)/2 : 0
+// function secondScreenStack({ navigation }) {
+//   return (
+//     <Stack.Navigator
+//       initialRouteName="SecondPage"
+//       screenOptions={{
+//         headerLeft: () => (
+//           <NavigationDrawerStructure navigationProps={navigation} />
+//         ),
+//         headerStyle: {
+//           backgroundColor: '#f4511e', //Set Header color
+//         },
+//         headerTintColor: '#fff', //Set Header text color
+//         headerTitleStyle: {
+//           fontWeight: 'bold', //Set Header text style
+//         },
+//       }}>
+//       <Stack.Screen
+//         name="SecondPage"
+//         component={SecondPage}
+//         options={{
+//           title: 'Second Page', //Set Header Title
+//         }}
+//       />
+//       <Stack.Screen
+//         name="ThirdPage"
+//         component={ThirdPage}
+//         options={{
+//           title: 'Third Page', //Set Header Title
+//         }}
+//       />
+//     </Stack.Navigator>
+//   );
+// }
 
-// const styles = StyleSheet.create({
-//   View_NavigationContainer:{
-//     maxWidth:600,
-//     marginLeft:marginLeft,
-//  }
-// })
+function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator
+        drawerContentOptions={{
+          activeTintColor: '#e91e63',
+          itemStyle: { marginVertical: 5 },
+        }}
+        drawerContent={(props) => <CustomSidebarMenu {...props} />}>
+        <Drawer.Screen
+          name="ListofCampaignScreenStack"
+          options={{ drawerLabel: 'ListofCampaignScreenStack' }}
+          component={ListofCampaignScreenStack}
+        />
+       
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;

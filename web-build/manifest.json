@@ -1,24 +1,12 @@
 {
-  "background_color": "#5A45FF",
-  "description": "Create website from Notion",
+  "background_color": "#ffffff",
+  "description": "Example of React Native NavigationDrawer",
   "display": "standalone",
   "lang": "en",
-  "name": "Lotion",
-  "short_name": "Lotion",
+  "name": "navigation-drawer-with-custom-sidebar-menu-example",
+  "short_name": "navigation-drawer-with-custom-sidebar-menu-example",
   "start_url": "/?utm_source=web_app_manifest",
   "orientation": "portrait",
-  "related_applications": [
-    {
-      "platform": "itunes",
-      "id": "com.joboasia.fitlivenew"
-    },
-    {
-      "platform": "play",
-      "url": "http://play.google.com/store/apps/details?id=com.joboasia.fitlivenew",
-      "id": "com.joboasia.fitlivenew"
-    }
-  ],
-  "prefer_related_applications": true,
   "icons": [
     {
       "src": "/pwa/chrome-icon/chrome-icon-144.png",

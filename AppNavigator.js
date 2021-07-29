@@ -1,113 +1,89 @@
+// Custom Navigation Drawer / Sidebar with Image and Icon in Menu Options
+// https://aboutreact.com/custom-navigation-drawer-sidebar-with-image-and-icon-in-menu-options/
+
+import 'react-native-gesture-handler';
+
 import * as React from 'react';
-import { I18nManager, Platform, StyleSheet, Text, View } from 'react-native';
-import { systemWeights } from 'react-native-typography';
-import { Icon, Touchable } from '@draftbit/ui';
+import { View, TouchableOpacity, Image } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import theme from './themes/DraftbitTheme.js';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import {lang} from './config/config';
+import FirstPage from './screens/ListofCampaignScreen.js';
 
 
-import LoginWithEmailScreen from './screens/LoginWithEmailScreen';
-import ListofProductsScreen from './screens/ListofProductsScreen';
-import ListofCampaignScreen from './screens/ListofCampaignScreen';
-
+// Import Custom Sidebar
+import CustomSidebarMenu from './CustomSidebarMenu';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
-      const config = {
+const Drawer = createDrawerNavigator();
+
+const NavigationDrawerStructure = (props) => {
+  //Structure for the navigatin Drawer
+  const toggleDrawer = () => {
+    //Props to open/close the drawer
+    props.navigationProps.toggleDrawer();
+  };
+
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      <TouchableOpacity onPress={toggleDrawer}>
+        {/*Donute Button Image */}
+        <Image
+          source={{
+            uri:
+              'https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png',
+          }}
+          style={{ width: 25, height: 25, marginLeft: 5 }}
+        />
+      </TouchableOpacity>
+    </View>
+  );
 };
 
-const linking = {
-  prefixes: ['https://web.fitlive.fit', 'http://localhost:19006'],
-  config,
-};
+function firstScreenStack({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="FirstPage">
+      <Stack.Screen
+        name="FirstPage"
+        component={FirstPage}
+        options={{
+          title: 'First Page', //Set Header Title
+          headerLeft: () => (
+            <NavigationDrawerStructure navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: '#f4511e', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
-export default function RootAppNavigator() {
+function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="ListofCampaignScreen"
-        screenOptions={{
-          cardOverlayEnabled: true,
-          gestureEnabled: true,
-          gestureDirection: 'horizontal',
+      <Drawer.Navigator
+        drawerContentOptions={{
+          activeTintColor: '#e91e63',
+          itemStyle: { marginVertical: 5 },
         }}
-      >
-        <Stack.Screen
-          name="ListofCampaignScreen"
-          component={ListofCampaignScreen}
-          options={{ title: 'Zaly KOC' }}
+        drawerContent={(props) => <CustomSidebarMenu {...props} />}>
+        <Drawer.Screen
+          name="FirstPage"
+          options={{ drawerLabel: 'First page Option' }}
+          component={firstScreenStack}
         />
-        <Stack.Screen
-          name="ListofProductsScreen"
-          component={ListofProductsScreen}
-          options={{ title: 'ListofProductsScreen' }}
-        />
-        <Stack.Screen
-          name="LoginWithEmailScreen"
-          component={LoginWithEmailScreen}
-          options={{ title: 'Login' }}
-        />
-       
         
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  headerIcon: Platform.select({
-    ios: {
-      marginVertical: 12,
-      resizeMode: 'contain',
-      transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-    },
-    default: {
-      margin: 3,
-      resizeMode: 'contain',
-      transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-    },
-  }),
-  headerIconLeft: Platform.select({
-    ios: {
-      marginRight: 6,
-    },
-  }),
-  headerIconRight: Platform.select({
-    ios: {
-      marginLeft: 6,
-    },
-  }),
-  headerContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    ...Platform.select({
-      ios: null,
-      default: {
-        marginVertical: 3,
-        marginHorizontal: 11,
-      },
-    }),
-  },
-  headerContainerLeft: Platform.select({
-    ios: {
-      marginLeft: 8,
-    },
-  }),
-  headerContainerRight: Platform.select({
-    ios: {
-      marginRight: 8,
-    },
-  }),
-  headerLabelWrapper: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
-  headerLabel: {
-    fontSize: 17,
-    letterSpacing: 0.35,
-  },
-});
+export default App;
